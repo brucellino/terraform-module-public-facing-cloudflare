@@ -1,8 +1,7 @@
 terraform {
   backend "consul" {
-    address = "consul.service.consul:8500"
-    scheme  = "http"
-    path    = "terraform/modules/tfmod-cloudflare-public"
+    scheme = "http"
+    path   = "terraform/modules/tfmod-cloudflare-public"
   }
   required_providers {
     cloudflare = {
