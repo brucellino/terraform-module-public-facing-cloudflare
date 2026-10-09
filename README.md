@@ -17,3 +17,40 @@ Prek is used to manage the hooks.
 
 The `examples/` directory contains the example usage of this module.
 These examples show how to use the module in your project, and are also use for testing in CI/CD.
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >1.2.0 |
+| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | 3.20.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | 3.20.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [cloudflare_record.external](https://registry.terraform.io/providers/cloudflare/cloudflare/3.20.0/docs/resources/record) | resource |
+| [cloudflare_zone.selected](https://registry.terraform.io/providers/cloudflare/cloudflare/3.20.0/docs/data-sources/zone) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_registered_domain"></a> [registered\_domain](#input\_registered\_domain) | A domain registered with Cloudflare that you own. This will be used for subsequent operations | `string` | n/a | yes |
+| <a name="input_service_records"></a> [service\_records](#input\_service\_records) | List of maps of record names and types which we want to create | `map(map(string))` | n/a | yes |
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->

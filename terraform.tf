@@ -8,11 +8,11 @@
 # These will be declared in the terraform document which consumes the module.
 
 terraform {
-  required_version = ">1.2.0"
+  required_version = "~> 1.16"
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "3.20.0"
+      version = "~> 5"
     }
   }
 }
