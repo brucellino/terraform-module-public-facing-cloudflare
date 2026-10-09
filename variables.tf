@@ -1,8 +1,10 @@
 # variables.tf
-# Use this file to declare the variables that the module will use.
-
-# A dummy variable is provided to force a test validation
-variable "dummy" {
+variable "registered_domain" {
   type        = string
-  description = "dummy variable"
+  description = "A domain registered with Cloudflare that you own. This will be used for subsequent operations"
+}
+
+variable "service_records" {
+  type        = map(map(string))
+  description = "List of maps of record names and types which we want to create"
 }

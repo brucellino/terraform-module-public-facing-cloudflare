@@ -1,21 +1,32 @@
-# This is the default example
-# customise it as you see fit for your example usage of your module
+terraform {
+  backend "consul" {
+    address = "consul.service.consul:8500"
+    scheme  = "http"
+    path    = "terraform/modules/tfmod-cloudflare-public"
+  }
+  required_providers {
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "3.20.0"
+    }
+  }
+}
 
-# add provider configurations here, for example:
-# provider "aws" {
-#
-# }
+data "vault_generic_secret" "cloudflare" {
+  path = "cloudflare/brucellino.dev"
+}
 
-# Declare your backends and other terraform configuration here
-# This is an example for using the consul backend.
-# terraform {
-#   backend "consul" {
-#     path = "test_module/simple"
-#   }
-# }
-
-
+provider "cloudflare" {
+  api_token = data.vault_generic_secret.cloudflare.data["token"]
+}
 module "example" {
-  source = "../../"
-  dummy  = "test"
+  source            = "../../"
+  registered_domain = "brucellino.dev"
+  service_records = {
+    test = {
+      type  = "CNAME",
+      value = "vault",
+      ttl   = "30"
+    }
+  }
 }
